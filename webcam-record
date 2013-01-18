@@ -5,9 +5,19 @@ if [[ -n $1 ]]; then
         DEVICE="$1"
 fi
 
-OUTPUT="output.mpg"
+OUTPUT="output.mpg";
 if [[ -n $2 ]]; then
-        OUTPUT="$2"
+        OUTPUT="$2";
+else
+        if [ -f "$OUTPUT" ]; then 
+                for x in {1..1000}; do
+                        X="output$x.mpg"
+                        if [[ ! -f $X ]]; then
+                                OUTPUT=$X;
+                                break;
+                        fi
+                done;
+        fi
 fi
 
 echo $OUTPUT $DEVICE;
