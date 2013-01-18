@@ -1,0 +1,15 @@
+#!/bin/bash
+
+DEVICE="/dev/video0"
+if [[ -n $1 ]]; then
+        DEVICE="$1"
+fi
+
+OUTPUT="output.mpg"
+if [[ -n $2 ]]; then
+        OUTPUT="$2"
+fi
+
+echo $OUTPUT $DEVICE;
+
+ffmpeg -f video4linux2 -s 640x480 -i $DEVICE $OUTPUT
